@@ -1,11 +1,13 @@
 package applications;
 
 import implementationClasses.BasicStackImpl;
+import implementationClasses.ListStackImpl;
 import interfaces.Stack;
 
 public class CardStack {
 	
-	static Stack<String> stackObj = new BasicStackImpl<String>();
+//	static Stack<String> stackObj = new BasicStackImpl<String>();
+	static Stack<String> stackObj = new ListStackImpl<String>();
 	static int stackSize;
 
 
