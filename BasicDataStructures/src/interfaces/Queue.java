@@ -11,5 +11,11 @@ public interface Queue<X> {
 	public boolean checkIfFull();
 	
 	public boolean checkIfEmpty();
+	
+	public boolean contains(X item);
+	
+	public X accessItem(int position);
+	
+	public void printQueue();
 
 }

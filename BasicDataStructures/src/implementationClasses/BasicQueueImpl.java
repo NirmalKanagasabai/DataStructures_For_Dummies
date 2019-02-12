@@ -9,14 +9,14 @@ public class BasicQueueImpl<X> implements Queue<X> {
 	private int end;
 	
 	@SuppressWarnings("unchecked")
-	BasicQueueImpl() {
+	public BasicQueueImpl() {
 		this.front = -1;
 		this.end = -1;
 		this.queueArray = (X[]) new Object[1000];
 	}
 	
 	@SuppressWarnings("unchecked")
-	BasicQueueImpl(int size) {
+	public BasicQueueImpl(int size) {
 		this.front = -1;
 		this.end = -1;
 		this.queueArray = (X[]) new Object[size];
@@ -50,17 +50,21 @@ public class BasicQueueImpl<X> implements Queue<X> {
 	public X deQueue() {
 		X removedItem = null;
 		if (checkIfEmpty()) {
+			System.out.println("[INFO]: Empty Queue");
 			throw new IllegalStateException("The queue is already empty!");
 		} else if (front == end) {
+			System.out.println("[INFO]: The only element");
 			removedItem = queueArray[front];
-			queueArray[front] = null;
+			//queueArray[front] = null;
 			front = -1;
 			end = -1;
 		} else {
+			System.out.println("[INFO]: Not the only element");
 			removedItem = queueArray[front];
-			queueArray[front] = null;
+			//queueArray[front] = null;
 			front++;
 		}
+		System.out.println("[INFO]: Removed Item: " + removedItem);
 		return removedItem;
 	}
 	
@@ -81,5 +85,42 @@ public class BasicQueueImpl<X> implements Queue<X> {
 			return false;
 		}
 	}
+	
+	@Override
+	public boolean contains(X item) {
+		if (checkIfEmpty()) {
+			return false;
+		} else {
+			for (int i=front; i<end; i++) {
+				if(queueArray[i].equals(item)) {
+					return true;
+				}
+			}
+			return false;
+		}
+	}
+	
+	@Override
+	public X accessItem(int position) {
+		int counter = 0;
+		if (checkIfEmpty() || position > size()) {
+			throw new IllegalArgumentException("The queue is empty or the position is greater than the size!");
+		} 
+		
+		for (int i=front; i<end; i++) {
+				if(counter == position) {
+					return queueArray[i];
+				}
+				counter++;
+		}
+		
+		throw new IllegalArgumentException("The item isn't found!");
+	}
 
+	@Override
+	public void printQueue() {
+		for (int i=0; i<size(); i++) {
+			System.out.println(queueArray[i]);
+		}		
+	}
 }
