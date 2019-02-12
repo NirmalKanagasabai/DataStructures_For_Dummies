@@ -7,9 +7,9 @@ import interfaces.Stack;
 
 public class ListStackImpl<X> implements Stack<X> {
 	
-	int stackPointer;
+	private int stackPointer;
 	
-	List<X> stackList;
+	private List<X> stackList;
 	
 	public ListStackImpl() {
 		

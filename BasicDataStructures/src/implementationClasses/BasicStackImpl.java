@@ -4,15 +4,22 @@ import interfaces.Stack;
 
 public class BasicStackImpl<X> implements Stack<X> {
 	
-	int stackPointer;
+	private int stackPointer;
 	
-	X[] stackArray;
+	private X[] stackArray;
 	
 	@SuppressWarnings("unchecked")
 	public BasicStackImpl() {
 		
 		this.stackPointer = 0;
 		this.stackArray = (X[]) new Object[1000];
+	}
+	
+	@SuppressWarnings("unchecked")
+	public BasicStackImpl(int size) {
+		this.stackPointer = 0;
+		// For creating an stack of a different size instead of hard-coding it. 
+		this.stackArray = (X[]) new Object[size];
 	}
 
 	@Override
