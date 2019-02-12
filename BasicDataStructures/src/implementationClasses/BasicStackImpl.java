@@ -9,7 +9,7 @@ public class BasicStackImpl<X> implements Stack<X> {
 	X[] stackArray;
 	
 	@SuppressWarnings("unchecked")
-	BasicStackImpl() {
+	public BasicStackImpl() {
 		
 		this.stackPointer = 0;
 		this.stackArray = (X[]) new Object[1000];
@@ -53,15 +53,27 @@ public class BasicStackImpl<X> implements Stack<X> {
 	public X access(X item) {	
 		while (stackPointer > 0) {
 			X poppedElement = pop();
-			if (poppedElement.equals(item)) {
+			if (item.equals(poppedElement)) {
 				return poppedElement;
 			}
 		}
-		return null;
+		
+		throw new IllegalStateException("Item" + item + "not found!");
 	}
 	
+	@Override
 	public int size() {
 		return stackPointer;
 	}
-
+	
+	@Override
+	public void printStack() {
+		if (stackPointer == 0) {
+			System.out.println("Empty Stack");
+		} else {
+			for (int i=0; i<=stackPointer; i++) {
+				System.out.println(stackArray[i]);
+			}
+		}
+	}
 }

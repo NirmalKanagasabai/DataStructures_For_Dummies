@@ -22,5 +22,15 @@ public interface Stack<X> {
 	 *  Method to access the given item if the Stack has it.
 	 */
 	public X access (X item);
+	
+	/*
+	 *  Method to print the contents of the stack.
+	 */
+	public void printStack();
+	
+	/*
+	 *  Method to print the size of the stack.
+	 */
+	public int size();
 
 }
