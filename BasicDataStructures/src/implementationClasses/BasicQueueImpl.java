@@ -48,23 +48,26 @@ public class BasicQueueImpl<X> implements Queue<X> {
 
 	@Override
 	public X deQueue() {
+		
 		X removedItem = null;
+		
 		if (checkIfEmpty()) {
-			System.out.println("[INFO]: Empty Queue");
 			throw new IllegalStateException("The queue is already empty!");
-		} else if (front == end) {
-			System.out.println("[INFO]: The only element");
+		} 
+		
+		else if (front == end) {
 			removedItem = queueArray[front];
 			//queueArray[front] = null;
 			front = -1;
 			end = -1;
-		} else {
-			System.out.println("[INFO]: Not the only element");
+		} 
+		
+		else {
 			removedItem = queueArray[front];
 			//queueArray[front] = null;
 			front++;
 		}
-		System.out.println("[INFO]: Removed Item: " + removedItem);
+		
 		return removedItem;
 	}
 	
@@ -102,16 +105,18 @@ public class BasicQueueImpl<X> implements Queue<X> {
 	
 	@Override
 	public X accessItem(int position) {
+		
 		int counter = 0;
+		
 		if (checkIfEmpty() || position > size()) {
 			throw new IllegalArgumentException("The queue is empty or the position is greater than the size!");
 		} 
 		
 		for (int i=front; i<end; i++) {
-				if(counter == position) {
-					return queueArray[i];
-				}
-				counter++;
+			if(counter == position) {
+				return queueArray[i];
+			}
+			counter++;
 		}
 		
 		throw new IllegalArgumentException("The item isn't found!");
