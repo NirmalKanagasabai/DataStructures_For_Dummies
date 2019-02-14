@@ -116,6 +116,10 @@ public class BasicBinaryTreeImpl <X extends Comparable<X>> implements BinaryTree
 		} else {
 			result = false;
 		}
+		
+		if (result) {
+			size--;
+		}
 		return result;
 	}
 	
